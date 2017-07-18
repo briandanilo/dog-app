@@ -31,7 +31,7 @@ class Counter extends Component {
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>{this.props.counter.count}</Text>
         <TouchableOpacity onPress={this.changeCount} style={styles.button}>
-          <Text>up</Text>
+          <Text>Increment Up</Text>
         </TouchableOpacity>
       </View>
     );

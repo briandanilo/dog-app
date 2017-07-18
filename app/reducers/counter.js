@@ -5,7 +5,7 @@ const initialState = {
 };
 
 export default function counter(state = initialState, action = {}) {
-  console.log("welcome to the reducer!")
+  console.log("welcome to the counter reducer!")
   switch (action.type) {
     case "ADD_TO_COUNTER":
       return {

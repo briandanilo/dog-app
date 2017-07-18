@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import { connect } from 'react-redux'
 import container from '../containers/all'
+import callApi from '../actions/api'
 
 const styles = StyleSheet.create({
   button: {
@@ -15,27 +16,28 @@ const styles = StyleSheet.create({
   }
 });
 
-class Questions extends Component {
+class ApiCaller extends Component {
   constructor(props) {
     super(props);
-    this.getQuestions = this.getQuestions.bind(this)
+    this.callApi = this.callApi.bind(this)
   }
 
-  getQuestions(){
-    this.props.dispatch({type:"GET_NEW_Q"})
+  callApi(){
+    this.props.dispatch(callApi());
   }
 
   render() {
     console.log("rendering.  this is the state: ", this.props)
+    console.log("rendering.  this is the the lines: ", this.props.api.line)
     return (
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>"What is canada?"</Text>
-        <TouchableOpacity onPress={this.getQuestions} style={styles.button}>
-        <Text>New Question</Text>
+        <Text>{this.props.api.line}</Text>
+        <TouchableOpacity onPress={this.callApi} style={styles.button}>
+        <Text>Get Lines</Text>
         </TouchableOpacity>
       </View>
     );
   }
 }
 
-export default connect(container.allState)(Questions)
+export default connect(container.allState)(ApiCaller)

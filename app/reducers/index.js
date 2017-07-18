@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 import counter from './counter';
-import questions from './questions';
+import api from './api';
 
 export default combineReducers({
   counter,
-  questions
+  api
 })

@@ -3,7 +3,7 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import Counter from '../components/counter';
-import Questions from '../components/questions';
+import ApiCaller from '../components/api';
 import { connect } from 'react-redux';
 import container from './all'
 import {View,StyleSheet} from 'react-native'
@@ -27,7 +27,7 @@ class AppRoot extends Component {
     return (
       <View style={styles.view}>
         <Counter/>
-        <Questions/>
+        <ApiCaller/>
       </View>
     );
   }

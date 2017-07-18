@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import { connect } from 'react-redux'
+import container from '../containers/all'
 
 const styles = StyleSheet.create({
   button: {
@@ -17,29 +18,24 @@ const styles = StyleSheet.create({
 class Counter extends Component {
   constructor(props) {
     super(props);
-    this.log = this.log.bind(this)
+    this.changeCount = this.changeCount.bind(this)
   }
 
-  log(){
+  changeCount(){
     this.props.dispatch({type:"ADD_TO_COUNTER"})
   }
 
   render() {
-    console.log("render ",this.props)
-    const { counter, increment, decrement } = this.props;
-
+    console.log("rendering.  this is the state: ", this.props)
     return (
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>{this.props.counter.count}</Text>
-        <TouchableOpacity onPress={this.log} style={styles.button}>
+        <TouchableOpacity onPress={this.changeCount} style={styles.button}>
           <Text>up</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={decrement} style={styles.button}>
-          <Text>down</Text>
         </TouchableOpacity>
       </View>
     );
   }
 }
 
-export default connect((state)=> { return state})(Counter)
+export default connect(container.allState)(Counter)

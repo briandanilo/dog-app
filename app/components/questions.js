@@ -8,34 +8,34 @@ const styles = StyleSheet.create({
     width: 200,
     height: 30,
     padding: 10,
-    backgroundColor: 'lightgray',
+    backgroundColor: 'lightblue',
     alignItems: 'center',
     justifyContent: 'center',
     margin: 3
   }
 });
 
-class Counter extends Component {
+class Questions extends Component {
   constructor(props) {
     super(props);
-    this.changeCount = this.changeCount.bind(this)
+    this.getQuestions = this.getQuestions.bind(this)
   }
 
-  changeCount(){
-    this.props.dispatch({type:"ADD_TO_COUNTER"})
+  getQuestions(){
+    this.props.dispatch({type:"GET_NEW_Q"})
   }
 
   render() {
     console.log("rendering.  this is the state: ", this.props)
     return (
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>{this.props.counter.count}</Text>
-        <TouchableOpacity onPress={this.changeCount} style={styles.button}>
-          <Text>up</Text>
+        <Text>"What is canada?"</Text>
+        <TouchableOpacity onPress={this.getQuestions} style={styles.button}>
+        <Text>New Question</Text>
         </TouchableOpacity>
       </View>
     );
   }
 }
 
-export default connect(container.allState)(Counter)
+export default connect(container.allState)(Questions)

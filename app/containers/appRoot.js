@@ -3,8 +3,20 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import Counter from '../components/counter';
+import Questions from '../components/questions';
 import { connect } from 'react-redux';
 import container from './all'
+import {View,StyleSheet} from 'react-native'
+
+
+const styles = StyleSheet.create({
+  view: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+});
 
 class AppRoot extends Component {
   constructor(props) {
@@ -13,7 +25,10 @@ class AppRoot extends Component {
 
   render() {
     return (
-      <Counter/>
+      <View style={styles.view}>
+        <Counter/>
+        <Questions/>
+      </View>
     );
   }
 }

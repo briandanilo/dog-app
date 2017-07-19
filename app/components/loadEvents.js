@@ -3,6 +3,7 @@ import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import { connect } from 'react-redux'
 import container from '../containers/all'
 import callApi from '../actions/api'
+import moment from 'moment'
 
 const styles = StyleSheet.create({
   button: {
@@ -16,7 +17,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class ApiCaller extends Component {
+class LoadEvents extends Component {
   constructor(props) {
     super(props);
     this.callApi = this.callApi.bind(this)
@@ -26,18 +27,27 @@ class ApiCaller extends Component {
     this.props.dispatch(callApi());
   }
 
+  renderEventHistory(){
+    if (!this.props.api.eventHistory)
+      this.props.dispatch(callApi())
+    else
+      return this.props.api.eventHistory.map((i)=>{
+        return <Text>{i.petName} {i.eventType} ({moment(i.eventTime).fromNow()})</Text>
+      })
+  }
+
   render() {
     console.log("rendering.  this is the state: ", this.props)
-    console.log("rendering.  this is the the lines: ", this.props.api.line)
+    console.log("rendering.  this is the the lines: ", this.props.api.eventHistory)
     return (
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>{this.props.api.line}</Text>
-        <TouchableOpacity onPress={this.callApi} style={styles.button}>
-        <Text>Get Lines</Text>
+        {this.renderEventHistory()}
+        <TouchableOpacity onPress={()=>{this.callApi()}} style={styles.button}>
+        <Text>Update Events</Text>
         </TouchableOpacity>
       </View>
     );
   }
 }
 
-export default connect(container.allState)(ApiCaller)
+export default connect(container.allState)(LoadEvents)

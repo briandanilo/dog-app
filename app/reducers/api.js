@@ -1,19 +1,21 @@
 //import * as types from '../actions/actionTypes';
 
 const initialState = {
-  line: ""
+  //line: ""
+  //eventHistory: []
 };
 
 export default function api(state = initialState, action = {}) {
   console.log("welcome to the api reducer!")
   switch (action.type) {
-    case "GOT_API_DATA":
-      var rand = Math.floor(Math.random()*action.data.length)
-      var game = action.data[rand]
-      var str = game.HomeTeam + " (" + game.MoneyLineHome + ")"
+    case "GOT_PET_DATA":
       return {
         ...state,
-        line: str
+        eventHistory: action.data.slice(action.data.length-5,action.data.length)
+      };
+    case "ADD_EVENT_API_SUCCESS":
+      return {
+        ...state,
       };
     default:
       return state;

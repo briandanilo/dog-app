@@ -3,7 +3,8 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import Counter from '../components/counter';
-import ApiCaller from '../components/api';
+import LoadEvents from '../components/loadEvents';
+import AddEvents from '../components/addEvents';
 import { connect } from 'react-redux';
 import container from './all'
 import {View,StyleSheet} from 'react-native'
@@ -26,8 +27,8 @@ class AppRoot extends Component {
   render() {
     return (
       <View style={styles.view}>
-        <Counter/>
-        <ApiCaller/>
+        <LoadEvents/>
+        <AddEvents/>
       </View>
     );
   }
